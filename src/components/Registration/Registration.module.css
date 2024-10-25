@@ -1,0 +1,49 @@
+.block {
+  position: relative;
+  margin: 0 auto;
+  max-width: 900px;
+  min-height: 500px;
+  background-color: #dcdbdb;
+  border-radius: 16px;
+  text-align: center;
+  padding: 15px;
+  margin-top: 50px;
+  border-radius: 12px;
+  box-shadow: 6px 3px 3px grey;
+}
+
+h1 {
+  font: 600 32px "Montserrat";
+  margin-bottom: 40px;
+}
+
+.areaField {
+  margin-top: 21px;
+}
+
+.labelInput {
+  margin-top: 25px;
+  font: 400 24px "Montserrat";
+  /* display: block; */
+  /* margin-bottom: px; */
+}
+
+#fieldToken {
+  font: 400 16px "Montserrat";
+}
+
+.info {
+  position: absolute;
+  /* left: 80%; */
+  transform: translateX(26%);
+  left: auto;
+  right: auto;
+  text-align: center;
+  bottom: 25px;
+  font: 400 16px "Montserrat";
+}
+
+.arr {
+  list-style: none;
+  line-height: 30px;
+}
