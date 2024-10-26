@@ -1,0 +1,100 @@
+.block {
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+  padding: 25px;
+  background-color: #c8c8c8;
+  position: fixed;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  top: -525px;
+  transition: transform 0.5s ease-in-out, top 0.5s ease-in-out;
+}
+
+.block.open {
+  top: 0;
+}
+
+header {
+  padding: 20px;
+  display: flex;
+  gap: 45px;
+}
+
+.inputArea {
+  min-width: 350px;
+  text-align: center;
+  font: 600 20px "Montserrat";
+}
+
+.inputCode {
+  height: 400px;
+  min-width: 350px;
+  resize: none;
+  border-radius: 12px;
+  padding: 10px;
+  font: 400 16px "Montserrat";
+  margin-top: 22px;
+  border: 2px solid #000;
+}
+
+.chooseLang {
+  text-align: center;
+  font: 400 16px "Montserrat";
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filtersArea {
+  position: relative;
+  width: auto;
+  flex-grow: 1;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.formGroup {
+  width: auto;
+  justify-content: center;
+  padding: 15px;
+}
+
+.formLabel {
+  font: 600 20px "Montserrat";
+}
+
+.oneLabel {
+  font: 400 16px "Montserrat";
+  margin: 0px;
+  width: 130px;
+}
+
+.FormControl {
+  margin: 0;
+  flex-grow: 1;
+}
+
+.btnFind {
+  width: 120px;
+  height: 40px;
+  font: 400 16px "Montserrat";
+  bottom: 5px;
+  right: 0;
+}
+
+.close {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: large;
+  bottom: 5px;
+}
+
+.close:hover {
+  cursor: pointer;
+}

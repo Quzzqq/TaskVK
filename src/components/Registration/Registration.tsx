@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Registration.module.css";
 import { Button, TextField } from "@mui/material";
-import takeToken from "../../utils/checkToken";
+import takeToken from "../../service/checkToken";
 import { useNavigate } from "react-router-dom";
 
 const Registration = ({
@@ -17,7 +17,7 @@ const Registration = ({
 
   const checkToken = async () => {
     try {
-      const response: string = await takeToken(value);
+      await takeToken(value);
       setMistake(false);
       localStorage.setItem("userToken", value);
       signIn(value);
@@ -35,7 +35,7 @@ const Registration = ({
     <div className={styles.block}>
       <h1>Поиск необходимого кода на ресурсах GitHub.</h1>
       <hr style={{ marginBottom: "15px" }} />
-      <label className={styles.labelInput} for={styles.fieldToken}>
+      <label className={styles.labelInput} htmlFor={styles.fieldToken}>
         Для продолжения вам необходимо ввести токен.
       </label>
       <br />

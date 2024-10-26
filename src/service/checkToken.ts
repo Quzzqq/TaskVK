@@ -1,4 +1,3 @@
-import { validateGitHubToken } from "validate-github-token";
 import instance from "../axios";
 
 export default async function takeToken(token: string) {
