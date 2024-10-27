@@ -3,17 +3,13 @@ import styles from "./Registration.module.css";
 import { Button, TextField } from "@mui/material";
 import takeToken from "../../service/checkToken";
 import { useNavigate } from "react-router-dom";
+import authStore from "../../stores/authStore";
 
-const Registration = ({
-  signIn,
-  token,
-}: {
-  signIn: (value: string) => void;
-  token: string;
-}) => {
+const Registration = ({ signIn }: { signIn: (value: string) => void }) => {
   const navigate = useNavigate();
   const [value, setValue] = useState<string>("");
   const [mistake, setMistake] = useState<boolean>(false);
+  const { token } = authStore;
 
   const checkToken = async () => {
     try {

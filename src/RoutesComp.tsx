@@ -19,10 +19,10 @@ const RoutesComp = observer(() => {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home token={token} />}></Route>
+          <Route path="/" element={<Home />}></Route>
           <Route
             path="/registration"
-            element={<Registration signIn={signIn} token={token} />}
+            element={<Registration signIn={signIn} />}
           ></Route>
         </Routes>
       </BrowserRouter>

@@ -14,8 +14,9 @@ import { useState } from "react";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import { IFilterState } from "../../../types/filterType";
 import { inWhere } from "../../consts/inWhere";
-import { takeData } from "../../../service/takeData";
+import { getData } from "../../../service/getData";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import DataStore from "../../../stores/DataStore";
 
 const HomeHeader: React.FC<IFilterState> = ({
   filters,
@@ -25,6 +26,7 @@ const HomeHeader: React.FC<IFilterState> = ({
   setOpenHeader,
 }) => {
   const [mistake, setMistake] = useState(false);
+  const { getDataAction } = DataStore;
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = event.target.value;
@@ -54,8 +56,9 @@ const HomeHeader: React.FC<IFilterState> = ({
     const text = filters.code.trim();
     if (text.length !== 0) {
       try {
-        await takeData(filters, token);
+        await getDataAction(filters, token);
         setMistake(false);
+        setOpenHeader(false);
       } catch (err) {
         console.log(err);
       }
@@ -95,6 +98,7 @@ const HomeHeader: React.FC<IFilterState> = ({
                         name={value}
                         value={value}
                         onChange={handleChangeLanguages}
+                        checked={filters.languages.includes(value)}
                       />
                     }
                     key={value}

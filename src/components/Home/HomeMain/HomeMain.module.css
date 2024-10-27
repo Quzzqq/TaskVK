@@ -1,0 +1,73 @@
+.block {
+  z-index: 1;
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1100px;
+  /* background-color: #e4e4e4; */
+  min-height: 560px;
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+}
+
+.elemArea {
+  background: #c7a2e3;
+  width: 220px;
+  height: 280px;
+  border-radius: 12px;
+  padding: 10px;
+  position: relative;
+}
+
+h3 {
+  font: 600 20px "Montserrat";
+  text-align: center;
+}
+
+.ownerArea {
+  font: 400 16px "Montserrat";
+  /* background: #fff; */
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+}
+
+.ownerName {
+  font: 400 16px "Montserrat";
+  text-align: center;
+  margin: 0;
+}
+
+.ownerNameUrl {
+  text-wrap: wrap;
+  font: 400 16px "Montserrat";
+  color: black;
+  text-decoration: none;
+}
+
+.ownerNameUrl:hover {
+  cursor: pointer;
+}
+
+.imgOwner {
+  max-width: 30%;
+  height: auto;
+}
+
+.btnLink {
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
