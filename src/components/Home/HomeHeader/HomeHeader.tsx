@@ -24,9 +24,11 @@ const HomeHeader: React.FC<IFilterState> = ({
   token,
   openHeader,
   setOpenHeader,
+  setManyAlerts,
+  setFetching,
 }) => {
   const [mistake, setMistake] = useState(false);
-  const { getDataAction } = DataStore;
+  const { getDataAction, clearPage } = DataStore;
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = event.target.value;
@@ -56,14 +58,24 @@ const HomeHeader: React.FC<IFilterState> = ({
     const text = filters.code.trim();
     if (text.length !== 0) {
       try {
+        clearPage();
         await getDataAction(filters, token);
         setMistake(false);
         setOpenHeader(false);
       } catch (err) {
+        if (err.status == 403) {
+          setManyAlerts(true);
+        }
         console.log(err);
       }
     } else {
       setMistake(true);
+    }
+  };
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleTakeData();
     }
   };
 
@@ -77,6 +89,7 @@ const HomeHeader: React.FC<IFilterState> = ({
             onChange={handleChangeInput}
             value={filters.code}
             style={mistake ? { borderColor: "red" } : {}}
+            onKeyDown={handleKeyDown}
           />
         </div>
         <div className={styles.filtersArea}>
@@ -150,13 +163,13 @@ const HomeHeader: React.FC<IFilterState> = ({
         <KeyboardDoubleArrowUpIcon
           className={styles.close}
           fontSize="large"
-          onClick={() => setOpenHeader((prev) => !prev)}
+          onClick={() => setOpenHeader(false)}
         />
       ) : (
         <KeyboardDoubleArrowDownIcon
           className={styles.close}
           fontSize="large"
-          onClick={() => setOpenHeader((prev) => !prev)}
+          onClick={() => setOpenHeader(true)}
         />
       )}
     </div>

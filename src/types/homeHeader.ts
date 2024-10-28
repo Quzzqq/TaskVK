@@ -6,4 +6,6 @@ export interface IFilterState {
   token: string;
   openHeader: boolean;
   setOpenHeader: React.Dispatch<React.SetStateAction<boolean>>;
+  setManyAlerts: React.Dispatch<React.SetStateAction<boolean>>;
+  setFetching: React.Dispatch<React.SetStateAction<boolean>>;
 }

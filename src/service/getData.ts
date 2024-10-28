@@ -9,13 +9,15 @@ export async function getData(filters: IFilter, token: string, page: number) {
     filters.languages.length !== 0
       ? "+language:" + filters.languages.join("+OR+language:")
       : ""
-  }&page=${page}&per_page=20`;
-  const response = await instance.get(path, {
-    headers: {
-      Authorization: `token ${token}`,
-    },
-  });
-  console.log(response);
-
-  return response.data;
+  }&page=${page}&per_page=40`;
+  try {
+    const response = await instance.get(path, {
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    });
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
 }

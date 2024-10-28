@@ -1,13 +1,27 @@
 import { Button } from "@mui/material";
 import { IData } from "../../../types/dataType";
 import styles from "./HomeMain.module.css";
+import CloseIcon from "@mui/icons-material/Close";
+import { observer } from "mobx-react-lite";
+import DataStore from "../../../stores/DataStore";
+import { useEffect } from "react";
 
-const HomeMain = ({ data }: { data: IData[] }) => {
+const HomeMain = observer(() => {
+  const { data, deleteCurrentData } = DataStore;
+
+  const deleteData = (item: IData) => {
+    deleteCurrentData(item);
+  };
+
   return (
     <div className={styles.block}>
       {data.length !== 0 &&
-        data?.map((elem) => (
-          <div className={styles.elemArea} key={elem.name}>
+        data?.map((elem, index) => (
+          <div className={styles.elemArea} key={`${elem.git_url}_${index}`}>
+            <CloseIcon
+              className={styles.btnClose}
+              onClick={() => deleteData(elem)}
+            ></CloseIcon>
             <h3>{elem.name}</h3>
             <div className={styles.ownerArea}>
               <p className={styles.ownerName}>Автор:</p>
@@ -37,5 +51,5 @@ const HomeMain = ({ data }: { data: IData[] }) => {
         ))}
     </div>
   );
-};
+});
 export default HomeMain;
