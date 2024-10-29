@@ -57,21 +57,31 @@ const Registration = ({ signIn }: { signIn: (value: string) => void }) => {
         </Button>
       </div>
       <div className={styles.info}>
-        <h3>Как получить токен?</h3>
-        <p>Это делается через настройки вашего аккаунта на GitHub:</p>
-        <ul className={styles.arr}>
-          <li>Перейдите в настройки вашего аккаунта.</li>
-          <li>
-            Найдите раздел <b>"Developer settings"</b>.
-          </li>
-          <li>
-            Раскройте <b>"Personal access tokens"</b>.
-          </li>
-          <li>
-            Во вкладке <b>"Fine-grained tokens"</b> нажмите{" "}
-            <b>"Generate new token"</b>
-          </li>
-        </ul>
+        <div className={styles.infoToken}>
+          <h3>Как получить токен?</h3>
+          <ul className={styles.arr}>
+            <p style={{ margin: "0px" }}>
+              Это делается через настройки вашего аккаунта на GitHub:
+            </p>
+            <li>Перейдите в настройки вашего аккаунта.</li>
+            <li>
+              Найдите раздел <b>"Developer settings"</b>.
+            </li>
+            <li>
+              Раскройте <b>"Personal access tokens"</b>.
+            </li>
+            <li>
+              Во вкладке <b>"Fine-grained tokens"</b> нажмите{" "}
+              <b>"Generate new token"</b>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.infoAboutMe}>
+          <h3 style={{ textAlign: "center" }}>Автор:</h3>
+          <p>Черненко Сергей</p>
+          <p>Frontend Developer</p>
+          <p>tg: @quzzqq</p>
+        </div>
       </div>
     </div>
   );

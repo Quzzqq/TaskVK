@@ -8,13 +8,11 @@ import {
   RadioGroup,
 } from "@mui/material";
 import styles from "./HomeHeader.module.css";
-import "./HomeHeader.css";
 import { languages } from "../../consts/languages";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import { IFilterState } from "../../../types/filterType";
 import { inWhere } from "../../consts/inWhere";
-import { getData } from "../../../service/getData";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import DataStore from "../../../stores/DataStore";
 
@@ -29,6 +27,17 @@ const HomeHeader: React.FC<IFilterState> = ({
 }) => {
   const [mistake, setMistake] = useState(false);
   const { getDataAction, clearPage } = DataStore;
+  const headerRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (
+      headerRef.current &&
+      !headerRef.current.contains(event.target) &&
+      !event.target.classList.contains("MuiSvgIcon-root")
+    ) {
+      setOpenHeader(false);
+    }
+  };
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = event.target.value;
@@ -79,99 +88,114 @@ const HomeHeader: React.FC<IFilterState> = ({
     }
   };
 
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className={`${styles.block} ${openHeader ? styles.open : ""}`}>
-      <header>
-        <div className={styles.inputArea}>
-          <label htmlFor={styles.formLabel}>Код</label>
-          <textarea
-            className={styles.inputCode}
-            onChange={handleChangeInput}
-            value={filters.code}
-            style={mistake ? { borderColor: "red" } : {}}
-            onKeyDown={handleKeyDown}
-          />
-        </div>
-        <div className={styles.filtersArea}>
-          <div className={styles.chooseLang}>
-            <FormControl
-              component="fieldset"
-              variant="standard"
-              className={styles.FormControl}
+    <div className={openHeader ? styles.background : ""}>
+      <div
+        className={`${styles.block} ${openHeader ? styles.open : ""}`}
+        ref={headerRef}
+      >
+        <header>
+          <div className={styles.inputArea}>
+            <label htmlFor={styles.formLabel}>Код</label>
+            <textarea
+              className={styles.inputCode}
+              onChange={handleChangeInput}
+              value={filters.code}
+              style={mistake ? { borderColor: "#ec3d3d71" } : {}}
+              onKeyDown={handleKeyDown}
+              placeholder="Введите необходимый код, который ищете на просторах GitHub"
+            />
+          </div>
+          <div className={styles.filtersArea}>
+            <div className={styles.chooseLang}>
+              <FormControl
+                component="fieldset"
+                variant="standard"
+                className={styles.FormControl}
+              >
+                <label className={styles.formLabel}>
+                  Язык программирования
+                </label>
+                <FormGroup
+                  className={styles.formGroup}
+                  style={{ flexDirection: "row" }}
+                >
+                  {languages.map((value) => (
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          name={value}
+                          value={value}
+                          onChange={handleChangeLanguages}
+                          checked={filters.languages.includes(value)}
+                        />
+                      }
+                      key={value}
+                      label={value}
+                      className={styles.oneLabel}
+                      sx={{
+                        font: '400 16px "Montserrat"',
+                      }}
+                    />
+                  ))}
+                </FormGroup>
+              </FormControl>
+            </div>
+            <div className={styles.chooseLang}>
+              <FormControl>
+                <label className={styles.formLabel}>Где искать?</label>
+                <RadioGroup
+                  className={styles.formGroup}
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  {inWhere.map((value) => (
+                    <FormControlLabel
+                      key={value}
+                      value={value}
+                      control={<Radio checked={filters.inWhere === value} />}
+                      onChange={handleChangeInWhere}
+                      label={value}
+                      className={styles.oneLabel}
+                      sx={{ justifyContent: "center" }}
+                    />
+                  ))}
+                </RadioGroup>
+              </FormControl>
+            </div>
+            <Button
+              variant="contained"
+              color="success"
+              className={styles.btnFind}
+              sx={{ position: "absolute" }}
+              onClick={handleTakeData}
             >
-              <label className={styles.formLabel}>Язык программирования</label>
-              <FormGroup
-                className={styles.formGroup}
-                style={{ flexDirection: "row" }}
-              >
-                {languages.map((value) => (
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        name={value}
-                        value={value}
-                        onChange={handleChangeLanguages}
-                        checked={filters.languages.includes(value)}
-                      />
-                    }
-                    key={value}
-                    label={value}
-                    className={styles.oneLabel}
-                    sx={{
-                      font: '400 16px "Montserrat"',
-                    }}
-                  />
-                ))}
-              </FormGroup>
-            </FormControl>
+              Искать
+            </Button>
           </div>
-          <div className={styles.chooseLang}>
-            <FormControl>
-              <label className={styles.formLabel}>Где искать?</label>
-              <RadioGroup
-                className={styles.formGroup}
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-              >
-                {inWhere.map((value) => (
-                  <FormControlLabel
-                    key={value}
-                    value={value}
-                    control={<Radio checked={filters.inWhere === value} />}
-                    onChange={handleChangeInWhere}
-                    label={value}
-                    className={styles.oneLabel}
-                    sx={{ justifyContent: "center" }}
-                  />
-                ))}
-              </RadioGroup>
-            </FormControl>
-          </div>
-          <Button
-            variant="contained"
-            color="success"
-            className={styles.btnFind}
-            sx={{ position: "absolute" }}
-            onClick={handleTakeData}
-          >
-            Искать
-          </Button>
-        </div>
-      </header>
-      {openHeader ? (
-        <KeyboardDoubleArrowUpIcon
-          className={styles.close}
-          fontSize="large"
-          onClick={() => setOpenHeader(false)}
-        />
-      ) : (
-        <KeyboardDoubleArrowDownIcon
-          className={styles.close}
-          fontSize="large"
-          onClick={() => setOpenHeader(true)}
-        />
-      )}
+        </header>
+        {openHeader ? (
+          <KeyboardDoubleArrowUpIcon
+            className={styles.close}
+            fontSize="large"
+            onClick={() => setOpenHeader(false)}
+          />
+        ) : (
+          <KeyboardDoubleArrowDownIcon
+            className={styles.close}
+            fontSize="large"
+            onClick={() => setOpenHeader(true)}
+          />
+        )}
+      </div>
     </div>
   );
 };

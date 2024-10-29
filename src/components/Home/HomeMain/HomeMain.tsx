@@ -38,11 +38,11 @@ const HomeMain = observer(() => {
                 className={styles.imgOwner}
               />
             </div>
-            <a href={elem.html_url} target="_blank">
+            <a href={elem.html_url} target="_blank" className={styles.aLink}>
               <Button
                 variant="contained"
                 className={styles.btnLink}
-                sx={{ position: "absolute" }}
+                sx={{ fontFamily: "Montserrat" }}
               >
                 Перейти
               </Button>

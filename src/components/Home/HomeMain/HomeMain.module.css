@@ -19,12 +19,15 @@
 }
 
 .elemArea {
-  background: #c7a2e3;
+  /* background: #f1dada; */
+  /* background: #d7bfe6; */
+  background-image: linear-gradient(to bottom, #f1dada 0 65%, #d7bfe6);
   width: 250px;
   height: 280px;
   border-radius: 12px;
   padding: 10px;
   position: relative;
+  border: 2px solid #000;
 }
 
 h3 {
@@ -35,11 +38,9 @@ h3 {
 
 .ownerArea {
   font: 400 14px "Montserrat";
-  /* background: #fff; */
   height: 50px;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   gap: 10px;
 }
@@ -68,12 +69,27 @@ h3 {
   height: auto;
 }
 
-.btnLink {
+.aLink {
+  position: absolute;
   bottom: 15px;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btnLink {
+  font: 400 18px "Montserrat";
+  width: auto;
+  height: auto;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #000;
+  /* background-image: linear-gradient(to top, #f1dada 0 65%, #d7bfe6); */
+  background: #90caf9;
 }
 
 .btnClose {

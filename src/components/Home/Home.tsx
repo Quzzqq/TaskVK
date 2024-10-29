@@ -10,9 +10,9 @@ import { observer } from "mobx-react-lite";
 import HomeMain from "./HomeMain/HomeMain";
 import { Alert, CircularProgress } from "@mui/material";
 import { alertManyRequests, alertNotFound } from "../Alerts/Alerts";
+import sad from "../../../public/sad.png";
 
 const Home = observer(() => {
-  const headerRef = useRef(null);
   const [fetching, setFetching] = useState(false);
   const { token } = AuthStore;
   const {
@@ -23,7 +23,7 @@ const Home = observer(() => {
     notFound,
     restartNotFound,
   } = DataStore;
-  const [openHeader, setOpenHeader] = useState(true);
+  const [openHeader, setOpenHeader] = useState(false);
   const [filters, setFilters] = useState<IFilter>({
     code: "",
     languages: [],
@@ -52,24 +52,6 @@ const Home = observer(() => {
       document.removeEventListener("scroll", scrollHandler);
     };
   }, [fetching, isLoading]);
-
-  const handleClickOutside = (event) => {
-    console.log(headerRef.current.contains(event.target));
-    if (
-      headerRef.current &&
-      !headerRef.current.contains(event.target) &&
-      !event.target.classList.contains("MuiSvgIcon-root")
-    ) {
-      setOpenHeader(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -113,18 +95,24 @@ const Home = observer(() => {
     <>
       {manyAlerts && alertManyRequests()}
       {tempAlert && alertNotFound()}
-      <div ref={headerRef}>
-        <HomeHeader
-          filters={filters}
-          setFilters={setFilters}
-          token={token}
-          openHeader={openHeader}
-          setOpenHeader={setOpenHeader}
-          setManyAlerts={setManyAlerts}
-          setFetching={setFetching}
-        />
-      </div>
-      <HomeMain />
+      <HomeHeader
+        filters={filters}
+        setFilters={setFilters}
+        token={token}
+        openHeader={openHeader}
+        setOpenHeader={setOpenHeader}
+        setManyAlerts={setManyAlerts}
+        setFetching={setFetching}
+      />
+      {data.length === 0 ? (
+        <div className={styles.makeRequest}>
+          <p>Тут пока пусто!</p>
+          <img src={sad} alt="Sad Smile" style={{ width: "400px" }} />
+        </div>
+      ) : (
+        <HomeMain />
+      )}
+
       {isLoading && (
         <CircularProgress color="secondary" className={styles.loading} />
       )}

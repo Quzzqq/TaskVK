@@ -36,8 +36,6 @@ class DataStore {
         }
       });
     } catch (err) {
-      // console.log((err.status === 403));
-      // console.log("123");
       throw err;
     } finally {
       runInAction(() => (this.isLoading = false));

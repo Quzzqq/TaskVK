@@ -8,10 +8,21 @@
 
 .maxCount {
   position: fixed;
-  /* background-color: #000; */
+  background-color: #9c9c9c42;
   z-index: 3;
-  color: red;
+  color: rgb(166, 0, 0);
   font: 600 20px "Montserrat";
   bottom: 15px;
-  right: 15px;
+  right: 30px;
+  padding: 15px;
+}
+.makeRequest {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font: 600 30px "Montserrat";
+  text-align: center;
+  top: 100px;
 }

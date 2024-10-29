@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import Registration from "./components/Registration/Registration";
 import Home from "./components/Home/Home";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 const RoutesComp = observer(() => {
   const { token, signIn, logout } = authStore;
@@ -24,6 +25,7 @@ const RoutesComp = observer(() => {
             path="/registration"
             element={<Registration signIn={signIn} />}
           ></Route>
+          <Route path="*" element={<PageNotFound />}></Route>
         </Routes>
       </BrowserRouter>
     );

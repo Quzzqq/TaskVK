@@ -1,3 +1,11 @@
+.background {
+  position: fixed;
+  z-index: 2;
+  background-color: rgba(165, 165, 165, 0.7);
+  width: 100%;
+  height: 100%;
+}
+
 .block {
   z-index: 2;
   left: 0;
@@ -6,7 +14,9 @@
   margin-right: auto;
   max-width: 900px;
   padding: 25px;
-  background-color: #c8c8c8;
+  background-color: #def4f4;
+  border: 5px solid #4532f086;
+  border-top: none;
   position: fixed;
   border-bottom-left-radius: 14px;
   border-bottom-right-radius: 14px;
@@ -28,6 +38,7 @@ header {
   min-width: 350px;
   text-align: center;
   font: 600 20px "Montserrat";
+  /* background-color: #000; */
 }
 
 .inputCode {
@@ -39,6 +50,8 @@ header {
   font: 400 16px "Montserrat";
   margin-top: 22px;
   border: 2px solid #000;
+  background-color: #e6d3d35f;
+  /* background-color: #ec3d3dd8; */
 }
 
 .chooseLang {
