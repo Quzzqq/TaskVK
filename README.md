@@ -1,50 +1,71 @@
-# React + TypeScript + Vite
+# Задание Vk - GitHub Api search code.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Этот проект представляет собой веб-приложение на React, которое позволяет пользователям искать и управлять репозиториями на GitHub. Пользователи могут вводить токен доступа для аутентификации и получать доступ к различным функциям приложения.
 
-Currently, two official plugins are available:
+## Функциональные возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Аутентификация через токен GitHub.
+- Поиск репозиториев по коду.
+- Просмотр информации о репозиториях.
+- Удаление репозиториев из списка.
 
-## Expanding the ESLint configuration
+## Технологии
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React**: Библиотека для построения пользовательских интерфейсов.
+- **MobX**: Управление состоянием приложения.
+- **Axios**: Для работы с API.
+- **React Router**: Для маршрутизации в приложении.
+- **Material-UI**: Компоненты пользовательского интерфейса.
+- **CSS MODULES**: Модульный css.
+- **Vitest**: Тестирование компонентов.
+- **Jest**: Тестирование компонентов.
+- **React testing library**: Тестирование компонентов.
 
-- Configure the top-level `parserOptions` property like this:
+## Как получить токен:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+![token](https://github.com/user-attachments/assets/59fa8251-b263-49fa-9f0f-0cb071ce99a5)
+
+## Демонстрация проекта:
+
+https://github.com/user-attachments/assets/dafb3977-05f7-4ddb-add3-1aa17980e4d6
+
+
+## Установка
+
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/ваш_пользователь/ваш_репозиторий.git
+2. Перейдите в директорию проекта:
+   ```bash
+   cd ваш_репозиторий
+3. Установите зависимости:
+   ```bash
+   yarn
+
+## Использование
+1. Запустите приложение:
+   ```bash
+   yarn dev
+2. Откройте http://localhost:5173 в вашем браузере.
+3. Введите ваш токен доступа GitHub для аутентификации.
+4. Используйте интерфейс для поиска и управления репозиториями.
+
+## Тестирование:
+Всего 13 тестов:
+- 4 теста в Home.test.tsx
+- 2 теста в HomeHeader.test.tsx
+- 2 теста в HomeMain.test.tsx
+- 1 тест в PageNotFound.test.tsx
+- 2 теста в Registration.test.tsx
+- 2 теста в RoutesComp.test.tsx
+
+### Запуск тестов:
+  ```bash
+  yarn test
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Проект выполнил:
+Черненко Сергей<br/>
+Frontend Developer <br/>
+tg: @quzzqq <br/>
+E-mail: black65reg@gmail.com 
