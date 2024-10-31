@@ -23,7 +23,7 @@
 
 ## Как получить токен:
 
-![token](https://github.com/user-attachments/assets/59fa8251-b263-49fa-9f0f-0cb071ce99a5)
+https://github.com/user-attachments/assets/f02dfb8a-2adf-4f58-8143-2c1c4c8c5785
 
 ## Демонстрация проекта:
 
