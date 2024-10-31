@@ -5,6 +5,7 @@ import { observer } from "mobx-react-lite";
 import Registration from "./components/Registration/Registration";
 import Home from "./components/Home/Home";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
+import DataStore from "./stores/DataStore";
 
 const RoutesComp = observer(() => {
   const { token, signIn, logout } = authStore;
@@ -20,7 +21,10 @@ const RoutesComp = observer(() => {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route
+            path="/"
+            element={<Home dataStore={DataStore} authStore={authStore} />}
+          ></Route>
           <Route
             path="/registration"
             element={<Registration signIn={signIn} />}

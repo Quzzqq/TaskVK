@@ -105,6 +105,7 @@ const HomeHeader: React.FC<IFilterState> = ({
           <div className={styles.inputArea}>
             <label htmlFor={styles.formLabel}>Код</label>
             <textarea
+              data-testid="input"
               className={styles.inputCode}
               onChange={handleChangeInput}
               value={filters.code}
@@ -177,6 +178,7 @@ const HomeHeader: React.FC<IFilterState> = ({
               className={styles.btnFind}
               sx={{ position: "absolute" }}
               onClick={handleTakeData}
+              role="button"
             >
               Искать
             </Button>

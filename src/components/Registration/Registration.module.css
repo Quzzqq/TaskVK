@@ -33,6 +33,8 @@ h1 {
 
 .info {
   font: 400 16px "Montserrat";
+  position: absolute;
+  bottom: 30px;
   display: flex;
   column-gap: 100px;
   justify-content: center;

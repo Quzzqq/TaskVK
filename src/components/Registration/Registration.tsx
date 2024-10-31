@@ -52,6 +52,7 @@ const Registration = ({ signIn }: { signIn: (value: string) => void }) => {
           className={styles.btn}
           style={{ marginTop: "10px", marginLeft: "50px" }}
           onClick={checkToken}
+          role="button"
         >
           Отправить
         </Button>

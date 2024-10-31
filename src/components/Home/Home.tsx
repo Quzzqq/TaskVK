@@ -4,17 +4,16 @@ import { useNavigate } from "react-router-dom";
 
 import HomeHeader from "./HomeHeader/HomeHeader";
 import { IFilter } from "../../types/filterType";
-import AuthStore from "../../stores/AuthStore";
-import DataStore from "../../stores/DataStore";
 import { observer } from "mobx-react-lite";
 import HomeMain from "./HomeMain/HomeMain";
 import { Alert, CircularProgress } from "@mui/material";
 import { alertManyRequests, alertNotFound } from "../Alerts/Alerts";
-import sad from "../../../public/sad.png";
+import DataStore from "../../stores/DataStore";
+import AuthStore from "../../stores/AuthStore";
 
-const Home = observer(() => {
+const Home = observer(({ dataStore, authStore }) => {
   const [fetching, setFetching] = useState(false);
-  const { token } = AuthStore;
+  const { token } = authStore ?? AuthStore;
   const {
     data,
     isLoading,
@@ -22,7 +21,7 @@ const Home = observer(() => {
     maxCount,
     notFound,
     restartNotFound,
-  } = DataStore;
+  } = dataStore ?? DataStore;
   const [openHeader, setOpenHeader] = useState(false);
   const [filters, setFilters] = useState<IFilter>({
     code: "",
@@ -92,7 +91,7 @@ const Home = observer(() => {
   }, [notFound, manyAlerts]);
 
   return (
-    <>
+    <div data-testId="home">
       {manyAlerts && alertManyRequests()}
       {tempAlert && alertNotFound()}
       <HomeHeader
@@ -105,12 +104,12 @@ const Home = observer(() => {
         setFetching={setFetching}
       />
       {data.length === 0 ? (
-        <div className={styles.makeRequest}>
+        <div className={styles.makeRequest} data-testId="empty-data">
           <p>Тут пока пусто!</p>
-          <img src={sad} alt="Sad Smile" style={{ width: "400px" }} />
+          <img src={"/sad.png"} alt="Sad Smile" style={{ width: "400px" }} />
         </div>
       ) : (
-        <HomeMain />
+        <HomeMain dataStore={dataStore}/>
       )}
 
       {isLoading && (
@@ -119,7 +118,7 @@ const Home = observer(() => {
       {!notFound && maxCount && (
         <div className={styles.maxCount}>Больше нет данных</div>
       )}
-    </>
+    </div>
   );
 });
 export default Home;

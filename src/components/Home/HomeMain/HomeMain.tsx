@@ -6,8 +6,8 @@ import { observer } from "mobx-react-lite";
 import DataStore from "../../../stores/DataStore";
 import { useEffect } from "react";
 
-const HomeMain = observer(() => {
-  const { data, deleteCurrentData } = DataStore;
+const HomeMain = observer(({ dataStore }) => {
+  const { data, deleteCurrentData } = dataStore ?? DataStore;
 
   const deleteData = (item: IData) => {
     deleteCurrentData(item);
@@ -21,8 +21,10 @@ const HomeMain = observer(() => {
             <CloseIcon
               className={styles.btnClose}
               onClick={() => deleteData(elem)}
+              role="button"
+              data-testid="close"
             ></CloseIcon>
-            <h3>{elem.name}</h3>
+            <h3 role="heading">{elem.name}</h3>
             <div className={styles.ownerArea}>
               <p className={styles.ownerName}>Автор:</p>
               <a
