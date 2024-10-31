@@ -37,6 +37,7 @@ const Registration = ({ signIn }: { signIn: (value: string) => void }) => {
       <br />
       <div className={styles.areaField}>
         <TextField
+        type="password"
           error={mistake}
           helperText={mistake ? "Неверный токен" : ""}
           style={{ width: "60%" }}
